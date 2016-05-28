@@ -8,8 +8,8 @@
 import scrapy
 from scrapy.item import  Item, Field
 
-
 class PropertyCrawlerItem(Item):
     imageUrl = Field()
     propertyUrl = Field()
+    propertyName  =Field()
 

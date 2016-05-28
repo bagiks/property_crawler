@@ -27,9 +27,9 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
+CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
@@ -64,13 +64,12 @@ COOKIES_ENABLED = False
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = [
-   'property_crawler.pipelines.MongoDBPipeline',
-]
 MONGODB_SERVER = "localhost"
 MONGODB_PORT = 27017
 MONGODB_DB = "bagiks"
-MONGODB_COLLECTION = "properties"
+MONGODB_COLLECTION = "property"
+MONGODB_URI = 'mongodb://localhost:27017'
+ITEM_PIPELINES = {'property_crawler.pipelines.MongoDBPipeline':100}
 
 # ITEM_PIPELINES = [
 #   'scrapy_mongodb.MongoDBPipeline',
@@ -107,4 +106,3 @@ MONGODB_COLLECTION = "properties"
 
 #DOWNLOAD_TIMEOUT=5000
 
-DOWNLOAD_DELAY = 5
