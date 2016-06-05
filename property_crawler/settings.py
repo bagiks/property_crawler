@@ -67,7 +67,7 @@ COOKIES_ENABLED = False
 MONGODB_SERVER = "localhost"
 MONGODB_PORT = 27017
 MONGODB_DB = "bagiks"
-MONGODB_COLLECTION = "property"
+MONGODB_COLLECTION = "property_test"
 MONGODB_URI = 'mongodb://localhost:27017'
 ITEM_PIPELINES = {'property_crawler.pipelines.MongoDBPipeline':100}
 
