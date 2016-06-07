@@ -50,13 +50,31 @@ I. Installcation with Vagrant
 
 Scrapy / python / mongodb are installed. Enjoy !
 
-7. Run with Pycharm
+7. Run demo on commandline
+```
+    scrapy crawl Flats-Property-Crawler
+```
+
+8. Run with Pycharm
 - Install Vagrant plugin in Pycharm
 ![](./vagrant_plugin.png)
 - "Vagrant up " in `Tools -> Vagrant -> ...`
 
 - Change Python interpreter
 ![](./py_interpreter.png)
+
+
+- Go to `property_crawler/spiders/9flats.py`, uncomment this block
+```python
+process = CrawlerProcess({
+     'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+ })
+
+process.crawl(FlatsPropertyCrawlSpider)
+
+process.start()
+```
+- Run 9flats.py 
 
 
 II. Installation without Vagrant
