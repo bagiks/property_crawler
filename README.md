@@ -7,7 +7,6 @@ I. Installcation with Vagrant
 	https://github.com/bagiks/property_crawler
 	cd property_crawler
 ```
-
 3. Install Berkshelf
 - Download ChefSDK
 ```
@@ -26,7 +25,7 @@ I. Installcation with Vagrant
         berks cookbook dev
      ```
      
-     Add cookbook to `cookbooks/Dev/Berksfile`
+    Add cookbook to `cookbooks/Dev/Berksfile`
      ```
         source "https://supermarket.chef.io"
 
