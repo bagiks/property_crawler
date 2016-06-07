@@ -2,13 +2,13 @@ I. Installcation with Vagrant
 ===========
 1. Install Vagrant
 
-3. Clone our repository
+2. Clone our repository
 ```
 	https://github.com/bagiks/property_crawler
 	cd property_crawler
 ```
 
-2. Install Berkshelf
+3. Install Berkshelf
 - Download ChefSDK
 ```
     https://downloads.chef.io/chef-dk/
@@ -38,20 +38,20 @@ I. Installcation with Vagrant
 
      ```
 
-3. Run vagrant
+4. Run vagrant
 ```
     vagrant up
 ```
 
-4. ssh to virtual machine
+5. ssh to virtual machine
 ```
     vagrant ssh
 ```
-5. go to project folder at `cd /vagrant_data`.
+6. go to project folder at `cd /vagrant_data`.
 
 Scrapy / python / mongodb are installed. Enjoy !
 
-6. Run with Pycharm
+7. Run with Pycharm
 - Install Vagrant plugin in Pycharm
 ![](./vagrant_plugin.png)
 - "Vagrant up " in `Tools -> Vagrant -> ...`
