@@ -1,10 +1,72 @@
-Installation
+I. Installcation with Vagrant
+===========
+1. Install Vagrant
+
+3. Clone our repository
+```
+	https://github.com/bagiks/property_crawler
+	cd property_crawler
+```
+
+2. Install Berkshelf
+- Download ChefSDK
+```
+    https://downloads.chef.io/chef-dk/
+```
+
+- Install berkshelf plugin
+```
+    vagrant plugin install vagrant-berkshelf
+```
+
+- If there is no `cookbooks/dev` director insite the folder.
+    ```
+        mkdir -p cookbooks/dev
+        cd cookbooks
+        berks cookbook dev
+     ```
+     
+     Add cookbook to `cookbooks/Dev/Berksfile`
+     ```
+        source "https://supermarket.chef.io"
+
+        metadata
+        cookbook 'poise-python', '~> 1.4.0'
+        cookbook 'vim', '~> 2.0.1'
+        cookbook 'mongodb', '~> 0.16.2'
+        cookbook 'apt', '~> 4.0.0'
+
+     ```
+
+3. Run vagrant
+```
+    vagrant up
+```
+
+4. ssh to virtual machine
+```
+    vagrant ssh
+```
+5. go to project folder at `cd /vagrant_data`.
+
+Scrapy / python / mongodb are installed. Enjoy !
+
+6. Run with Pycharm
+- Install Vagrant plugin in Pycharm
+![](./vagrant_plugin.png)
+- "Vagrant up " in `Tools -> Vagrant -> ...`
+
+- Change Python interpreter
+![](./py_interpreter.png)
+
+
+II. Installation without Vagrant
 ===========
 1. Install Anaconda, python 2.7
 
 2. Creat a new enviroment `scraping` with scrapy package
 
-```
+```bash
 	conda create --name scraping Scrapy
 ```
 3. Activate / deactivate the enviroment
