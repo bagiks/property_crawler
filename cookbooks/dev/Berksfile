@@ -1,0 +1,7 @@
+source "https://supermarket.chef.io"
+
+metadata
+cookbook 'poise-python', '~> 1.4.0'
+cookbook 'vim', '~> 2.0.1'
+cookbook 'mongodb', '~> 0.16.2'
+cookbook 'apt', '~> 4.0.0'
