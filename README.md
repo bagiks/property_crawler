@@ -1,19 +1,24 @@
 I. Installcation with Vagrant
 ===========
+
 1. Install Vagrant
 
 2. Clone our repository
+
 ```
 	https://github.com/bagiks/property_crawler
 	cd property_crawler
 ```
+
 3. Install Berkshelf
+
 - Download ChefSDK
 ```
     https://downloads.chef.io/chef-dk/
 ```
 
 - Install berkshelf plugin
+
 ```
     vagrant plugin install vagrant-berkshelf
 ```
@@ -38,24 +43,29 @@ I. Installcation with Vagrant
      ```
 
 4. Run vagrant
+
 ```
     vagrant up
 ```
 
 5. ssh to virtual machine
+
 ```
     vagrant ssh
 ```
+
 6. go to project folder at `cd /vagrant_data`.
 
 Scrapy / python / mongodb are installed. Enjoy !
 
 7. Run demo on commandline
+
 ```
     scrapy crawl Flats-Property-Crawler
 ```
 
 8. Run with Pycharm
+
 - Install Vagrant plugin in Pycharm
 ![](./vagrant_plugin.png)
 - "Vagrant up " in `Tools -> Vagrant -> ...`
