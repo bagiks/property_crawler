@@ -1,4 +1,4 @@
-I. Installcation with Vagrant
+I. Install with Vagrant
 ===========
 
 1. Install Vagrant
@@ -87,7 +87,7 @@ process.start()
 - Run 9flats.py 
 
 
-II. Installation without Vagrant
+II. Install without Vagrant
 ===========
 1. Install Anaconda, python 2.7
 
