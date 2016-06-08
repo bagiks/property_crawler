@@ -17,8 +17,8 @@ class PropertyCrawlerItem(Item):
 class ImageItems(Item):
     image_urls = Field()
     images = Field()
-    # image_name = Field()
-    # directory = Field()
+    image_name = Field()
+    directory = Field()
 
 class AnnotationItems (Item):
     files = Field()
