@@ -13,3 +13,17 @@ class PropertyCrawlerItem(Item):
     propertyUrl = Field()
     propertyName  =Field()
 
+
+class ImageItems(Item):
+    image_urls = Field()
+    images = Field()
+    # image_name = Field()
+    # directory = Field()
+
+class AnnotationItems (Item):
+    files = Field()
+    file_urls  = Field()
+    file_name = Field()
+    directory = Field()
+
+

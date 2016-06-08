@@ -1,18 +1,11 @@
 # -*- coding: utf-8 -*-
-import scrapy
-from scrapy import Spider
-from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-from scrapy.selector import HtmlXPathSelector
 import re
 from scrapy.loader.processors import MapCompose, Join
 from scrapy.loader import ItemLoader
-from scrapy.selector import Selector
 from scrapy.http import Request
-import locale
 import urlparse
 import logging
-from random import randint
 from scrapy.crawler import CrawlerProcess
 
 
@@ -66,12 +59,12 @@ class FlatsPropertyCrawlSpider(CrawlSpider):
         l.add_xpath('propertyName', "//h1[@class='place__header__title']/text()", MapCompose(unicode.strip))
         return l.load_item()
 
-process = CrawlerProcess({
-    'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
-})
-
-process.crawl(FlatsPropertyCrawlSpider)
-
-process.start()
+# process = CrawlerProcess({
+#     'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+# })
+#
+# process.crawl(FlatsPropertyCrawlSpider)
+#
+# process.start()
 
 
