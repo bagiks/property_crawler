@@ -16,6 +16,11 @@ class IndoorImageCrawlSpider(CrawlSpider):
         'http://people.csail.mit.edu/brussell/research/LabelMe/Images/'
     ]
 
+    custom_settings = {
+        'ITEM_PIPELINES' :{'scrapy.pipelines.images.ImagesPipeline': 1},
+        'IMAGES_STORE':'./images'
+    }
+
     def parse(self, response):
         image_directory_urls = response.xpath("//a/@href")
         for url in image_directory_urls.extract():

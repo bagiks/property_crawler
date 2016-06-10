@@ -29,13 +29,11 @@ logger.addHandler(fh)
 
 from property_crawler.items import PropertyCrawlerItem
 
-# x = response.xpath("//h3[@class='hit-headline']/a[@class='hit-url js-hitLink']/@href")[10].extract()
-
 
 class CraiglistPropertyCrawlSpider(CrawlSpider):
 
     name = "Craigs-Property-Crawler"
-    allowed_domains = ["https://craigslist.org"]
+    allowed_domains = ["craigslist.org"]
     start_urls = [
         # 'http://www.wimdu.com/great-britain?object_types%5B%5D=apartment&object_types%5B%5D=house&sort_by=score',
         'https://craigslist.org/search/ela?query=television&srchType=T&hasPic=1',
@@ -49,8 +47,8 @@ class CraiglistPropertyCrawlSpider(CrawlSpider):
 
         propertiesLinks = response.xpath("//a[@class='hdrlnk']/@href")
         for url in propertiesLinks.extract():
-            # print "------"
-            # print urlparse.urljoin('https://www.9flats.com', url)
+            print "------"
+            print urlparse.urljoin('https://craigslist.org', url)
             yield Request(urlparse.urljoin('https://craigslist.org', url), callback=self.parse_item)
 
 
@@ -59,19 +57,19 @@ class CraiglistPropertyCrawlSpider(CrawlSpider):
         return re.match(r'(.*)\((.*)\)(.*)', url).group(2).replace('small','large')
 
     def parse_item(self, response):
-        # print "....................."
+        print "....................."
         l = ItemLoader(item=PropertyCrawlerItem(), response=response)
         l.add_xpath('imageUrl', "//div[@class='thumb']/@style", MapCompose(lambda i : re.match(r'(.*)\((.*)\)(.*)', i).group(2).replace('small','large')))
         l.add_value('propertyUrl', response.url)
         l.add_xpath('propertyName', "//span[@class='postingtitletext']/text()", MapCompose(unicode.strip))
         l.add_xpath('price', "//span[@class='postingtitletext']/text()", MapCompose(unicode.strip))
         return l.load_item()
-
-process = CrawlerProcess({
-     'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
-    })
-process.crawl(CraiglistPropertyCrawlSpider)
-
-process.start()
+#
+# process = CrawlerProcess({
+#      'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+#     })
+# process.crawl(CraiglistPropertyCrawlSpider)
+#
+# process.start()
 
 

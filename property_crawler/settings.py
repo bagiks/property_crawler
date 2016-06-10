@@ -71,8 +71,8 @@ MONGODB_COLLECTION = "property_test"
 MONGODB_URI = 'mongodb://localhost:27017'
 #ITEM_PIPELINES = {'property_crawler.pipelines.MongoDBPipeline':100}
 
-ITEM_PIPELINES ={'scrapy.pipelines.images.ImagesPipeline': 1}
-IMAGES_STORE='/Users/kidio/git/bagiks/property_crawler/images'
+# ITEM_PIPELINES ={'scrapy.pipelines.images.ImagesPipeline': 1}
+# IMAGES_STORE='/Users/kidio/git/bagiks/property_crawler/images'
 
 # ITEM_PIPELINES = [
 #   'scrapy_mongodb.MongoDBPipeline',
