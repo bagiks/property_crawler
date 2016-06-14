@@ -36,11 +36,10 @@ class CraiglistPropertyCrawlSpider(CrawlSpider):
     allowed_domains = ["craigslist.org"]
     start_urls = [
         # 'http://www.wimdu.com/great-britain?object_types%5B%5D=apartment&object_types%5B%5D=house&sort_by=score',
-        'https://craigslist.org/search/ela?query=television&srchType=T&hasPic=1',
+        'https://auburn.craigslist.org/search/ela?query=television&hasPic=1',
     ]
 
     def parse(self, response):
-        yield Request('https://goldcountry.craigslist.org/ele/5624980765.html',callback=self.parse_item)
         next_page = response.xpath("//a[@class='button next']/@href")
         for url in next_page.extract():
             yield Request(urlparse.urljoin('https://auburn.craigslist.org', url))
@@ -59,10 +58,9 @@ class CraiglistPropertyCrawlSpider(CrawlSpider):
     def parse_item(self, response):
         print "....................."
         l = ItemLoader(item=PropertyCrawlerItem(), response=response)
-        l.add_xpath('imageUrl', "//div[@class='thumb']/@style", MapCompose(lambda i : re.match(r'(.*)\((.*)\)(.*)', i).group(2).replace('small','large')))
+        l.add_xpath('imageUrl', "//a[@class='thumb']/@href", MapCompose(unicode.strip))
         l.add_value('propertyUrl', response.url)
-        l.add_xpath('propertyName', "//span[@class='postingtitletext']/text()", MapCompose(unicode.strip))
-        l.add_xpath('price', "//span[@class='postingtitletext']/text()", MapCompose(unicode.strip))
+        l.add_xpath('propertyName', "//span[@id='titletextonly']/text()", MapCompose(unicode.strip))
         return l.load_item()
 #
 # process = CrawlerProcess({
