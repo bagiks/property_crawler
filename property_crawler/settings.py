@@ -69,8 +69,9 @@ MONGODB_PORT = 27017
 MONGODB_DB = "bagiks"
 MONGODB_COLLECTION = "property_test"
 MONGODB_URI = 'mongodb://localhost:27017'
-#ITEM_PIPELINES = {'property_crawler.pipelines.MongoDBPipeline':100}
-
+# ITEM_PIPELINES = {'property_crawler.pipelines.MongoDBPipeline':100}
+ITEM_PIPELINES = {'property_crawler.pipelines.MongoImagePipeline': 100}
+IMAGES_STORE ='./images/gumtree'
 # ITEM_PIPELINES ={'scrapy.pipelines.images.ImagesPipeline': 1}
 # IMAGES_STORE='/Users/kidio/git/bagiks/property_crawler/images'
 
@@ -109,3 +110,4 @@ MONGODB_URI = 'mongodb://localhost:27017'
 
 #DOWNLOAD_TIMEOUT=5000
 
+USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'

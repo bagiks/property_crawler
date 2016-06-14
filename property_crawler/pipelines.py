@@ -9,8 +9,8 @@
 import pymongo
 from scrapy.conf import settings
 from scrapy.exceptions import DropItem
-from scrapy import log
-
+from scrapy.pipelines.images import ImagesPipeline
+from scrapy import Request
 
 
 import json
@@ -26,7 +26,6 @@ class MongoDBPipeline(object):
         self.collection = db[settings['MONGODB_COLLECTION']]
 
     def process_item(self, item, spider):
-        print item
         valid = True
         for data in item:
             if not data:
@@ -34,34 +33,47 @@ class MongoDBPipeline(object):
                 raise DropItem("Missing {0}".format(data))
         if valid:
             self.collection.insert(dict(item))
-            log.msg("Question added to MongoDB database!",
-                    level=log.DEBUG, spider=spider)
             return item
-    # def __init__(self):
-    #     self.file = open('items.jl', 'wb')
-    #
-    # def process_item(self, item, spider):
-    #     line = json.dumps(dict(item)) + "\n"
-    #     self.file.write(line)
-    #     return item
-#     def __init__(self):
-#         connection = pymongo.Connection(settings['MONGODB_SERVER'], settings['MONGODB_PORT'])
-#         db = connection[settings['MONGODB_DB']]
-#         self.collection = db[settings['MONGODB_COLLECTION']]
-#
-#     def process_item(self, item, spider):
-#         self.collection.insert(dict(item))
-#         return item
 
-# class JsonWriterPipeline(object):
-#
-#     def __init__(self):
-#         self.file = open('items.jl', 'wb')
-#
-#     def process_item(self, item, spider):
-#         line = json.dumps(dict(item)) + "\n"
-#         self.file.write(line)
-#         return item
-#
-#     def close_spider(self, spider):
-#         self.file.close()
+
+
+class MongoImagePipeline(ImagesPipeline):
+    def __init__(self, store_uri, download_func=None, settings=None):
+        super(MongoImagePipeline, self).__init__(store_uri, settings=settings, download_func=download_func)
+        # print store_uri
+        print settings['MONGODB_DB']
+        connection = pymongo.MongoClient(
+            settings['MONGODB_SERVER'],
+            settings['MONGODB_PORT']
+        )
+        db = connection[settings['MONGODB_DB']]
+        self.collection = db[settings['MONGODB_COLLECTION']]
+
+
+    def item_completed(self, results, item, info):
+        if isinstance(item, dict) or self.images_result_field in item.fields:
+            item[self.images_result_field] = [x for ok, x in results if ok]
+
+        valid = True
+        for data in item:
+            if not data:
+                valid = False
+                raise DropItem("Missing {0}".format(data))
+        if valid:
+            self.collection.insert(dict(item))
+            return item
+        return item
+    # def item_completed(self, results, item, info):
+    #     image_paths = [x['path'] for ok, x in results if ok]
+    #     if not image_paths:
+    #         raise DropItem("Item contains no images")
+    #     item['image_paths'] = image_paths
+    #
+    #     valid = True
+    #     for data in item:
+    #         if not data:
+    #             valid = False
+    #             raise DropItem("Missing {0}".format(data))
+    #     if valid:
+    #         self.collection.insert(dict(item))
+    #         return item

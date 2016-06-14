@@ -16,10 +16,10 @@ class GumtreeImageCrawlSpider(CrawlSpider):
         'https://www.gumtree.com/search?search_category=home-garden'
     ]
 
-    custom_settings = {
-        'ITEM_PIPELINES' :{'scrapy.pipelines.images.ImagesPipeline': 1},
-        'IMAGES_STORE':'./images/gumtree'
-    }
+    # custom_settings = {
+    #     'ITEM_PIPELINES' :{'property_crawler.pipelines.MongoImagePipeline': 1},
+    #     'IMAGES_STORE':'./images/gumtree'
+    # }
 
     def parse(self, response):
         next_page = response.xpath("//li[@class='pagination-next']//a/@href")
