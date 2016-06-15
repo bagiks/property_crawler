@@ -34,5 +34,6 @@ class PropertyImageItems(Item):
     price = Field()
     description = Field()
     id = Field()
-    tag = Field()
+    tags = Field()
+    category = Field()
 
