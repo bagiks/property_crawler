@@ -35,7 +35,6 @@ class CraiglistPropertyCrawlSpider(CrawlSpider):
     name = "Craigs-Property-Crawler"
     allowed_domains = ["craigslist.org"]
     start_urls = [
-        # 'http://www.wimdu.com/great-britain?object_types%5B%5D=apartment&object_types%5B%5D=house&sort_by=score',
         'https://auburn.craigslist.org/search/ela?query=television&hasPic=1',
     ]
 

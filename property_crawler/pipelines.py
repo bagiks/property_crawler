@@ -36,7 +36,6 @@ class MongoDBPipeline(object):
             return item
 
 
-
 class MongoImagePipeline(ImagesPipeline):
     def __init__(self, store_uri, download_func=None, settings=None):
         super(MongoImagePipeline, self).__init__(store_uri, settings=settings, download_func=download_func)
@@ -63,17 +62,3 @@ class MongoImagePipeline(ImagesPipeline):
             self.collection.insert(dict(item))
             return item
         return item
-    # def item_completed(self, results, item, info):
-    #     image_paths = [x['path'] for ok, x in results if ok]
-    #     if not image_paths:
-    #         raise DropItem("Item contains no images")
-    #     item['image_paths'] = image_paths
-    #
-    #     valid = True
-    #     for data in item:
-    #         if not data:
-    #             valid = False
-    #             raise DropItem("Missing {0}".format(data))
-    #     if valid:
-    #         self.collection.insert(dict(item))
-    #         return item

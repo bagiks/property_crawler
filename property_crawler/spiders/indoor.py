@@ -32,7 +32,7 @@ class IndoorImageCrawlSpider(CrawlSpider):
 
     def parse_image_page(self, response):
         image_urls = response.xpath("//a/@href")
-        l = ItemLoader(item=ImageItems(), response=response)
+        # l = ItemLoader(item=ImageItems(), response=response)
         items = []
         for url in image_urls.extract():
             if "jpg" in url:

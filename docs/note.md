@@ -13,7 +13,7 @@ All Category -> Home & Garden -> Appliances -> Fridges & Freezers
 
 ### Ads ID
 ### Name
-### ad-description
+### Description
 ### Price
 ### Tags
 ### Source 

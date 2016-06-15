@@ -27,3 +27,12 @@ class AnnotationItems (Item):
     directory = Field()
 
 
+class PropertyImageItems(Item):
+    image_urls = Field()
+    images = Field()
+    title = Field()
+    price = Field()
+    description = Field()
+    id = Field()
+    tag = Field()
+
