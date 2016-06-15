@@ -5,7 +5,9 @@ import re
 import urlparse
 from scrapy.loader import ItemLoader
 from scrapy.loader.processors import TakeFirst, MapCompose, Join
+import hashlib
 
+from scrapy.utils.python import to_bytes
 
 from property_crawler.items import PropertyImageItems
 
@@ -68,12 +70,14 @@ class GumtreeBedImageCrawlSpider(CrawlSpider):
         l.add_xpath('price',"//div[@id='ad-price']//span[@class='j-original-price']/text()", MapCompose(unicode.strip))
         l.add_xpath('description',"//div[@id='ad-description']/text()", Join('\n'))
         header = response.xpath("//div[@id='breadcrumb']//li//text()").extract()
-        l.add_value('id', header[-1].split(u'\xa0')[-1])
+        l.add_value('item_id', header[-1].split(u'\xa0')[-1])
         l.add_value('tags',header[1:-1])
 
         image_urls = response.xpath("//div[@class='carousel-wrap ad-gallery-thumbs']//span/@data-src").extract()
         l.add_value('image_urls',map(lambda x: x.replace("$_74.","$_10."), image_urls))
         l.add_value('category', self.category)
+        l.add_value('source', self.allowed_domains[0])
+        l.add_value('page_id',hashlib.sha1(to_bytes(response.url)).hexdigest())
 
         return l.load_item()
 
