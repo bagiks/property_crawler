@@ -13,6 +13,7 @@ from property_crawler.items import PropertyImageItems
 
 class GumtreeBedImageCrawlSpider(CrawlSpider):
     name = "Gumtree-Au-Image-Spider-Bed"
+    rotate_user_agent = True
     allowed_domains = ["www.gumtree.com.au"]
     start_urls = [
         "http://www.gumtree.com.au/s-sofas/c20079"
