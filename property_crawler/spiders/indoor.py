@@ -5,7 +5,8 @@ from scrapy.http import Request
 import re
 import urlparse
 from scrapy.loader import ItemLoader
-
+from randomproxy import RandomProxy
+from scrapy.conf import settings
 
 from property_crawler.items import ImageItems
 
@@ -15,11 +16,12 @@ class IndoorImageCrawlSpider(CrawlSpider):
     start_urls = [
         'http://people.csail.mit.edu/brussell/research/LabelMe/Images/'
     ]
-
     custom_settings = {
         'ITEM_PIPELINES' :{'scrapy.pipelines.images.ImagesPipeline': 1},
         'IMAGES_STORE':'./images'
     }
+
+    randomProxy = RandomProxy(settings)
 
     def parse(self, response):
         image_directory_urls = response.xpath("//a/@href")
@@ -27,6 +29,7 @@ class IndoorImageCrawlSpider(CrawlSpider):
             if "indoor" in str(url).lower():
                 request = Request(urlparse.urljoin(self.start_urls[0],url), callback=self.parse_image_page)
                 request.meta['directory'] = url
+                self.randomProxy.process_request(request,self)
                 yield request
 
 
@@ -43,10 +46,10 @@ class IndoorImageCrawlSpider(CrawlSpider):
                 items.append(item)
         return items
 
-# process = CrawlerProcess({
-#     'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
-# })
-#
-# process.crawl(IndoorImageCrawlSpider)
-#
-# process.start()
+process = CrawlerProcess({
+    'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+})
+
+process.crawl(IndoorImageCrawlSpider)
+
+process.start()

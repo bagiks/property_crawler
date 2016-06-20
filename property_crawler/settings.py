@@ -72,6 +72,25 @@ MONGODB_URI = 'mongodb://localhost:27017'
 # ITEM_PIPELINES = {'property_crawler.pipelines.MongoDBPipeline':100}
 #ITEM_PIPELINES = {'property_crawler.pipelines.MongoImagePipeline': 1}
 # IMAGES_STORE ='./images/gumtree.au'
+# Retry many times since proxies often fail
+RETRY_TIMES = 1
+# Retry on most error codes since proxies fail for different reasons
+RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.contrib.downloadermiddleware.retry.RetryMiddleware': 90,
+    # Fix path to this module
+    'yourspider.randomproxy.RandomProxy': 100,
+    'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
+}
+
+# Proxy list containing entries like
+# http://host1:port
+# http://username:password@host2:port
+# http://host3:port
+PROXY_LIST = 'list.txt'
+#ITEM_PIPELINES = {'property_crawler.pipelines.MongoDBPipeline':100}
+
 # ITEM_PIPELINES ={'scrapy.pipelines.images.ImagesPipeline': 1}
 # IMAGES_STORE='/Users/kidio/git/bagiks/property_crawler/images'
 
