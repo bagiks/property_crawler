@@ -1,14 +1,13 @@
+import urlparse
 
-from scrapy.spiders import CrawlSpider
+from scrapy.conf import settings
 from scrapy.crawler import CrawlerProcess
 from scrapy.http import Request
-import re
-import urlparse
-from scrapy.loader import ItemLoader
-from randomproxy import RandomProxy
-from scrapy.conf import settings
+from scrapy.spiders import CrawlSpider
 
 from property_crawler.items import ImageItems
+from property_crawler.randomproxy import RandomProxy
+
 
 class IndoorImageCrawlSpider(CrawlSpider):
     name = "Indoor-Image-Spider"

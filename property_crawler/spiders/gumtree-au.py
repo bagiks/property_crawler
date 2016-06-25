@@ -39,15 +39,6 @@ class GumtreeBedImageCrawlSpider(CrawlSpider):
         'IMAGES_STORE':'./images/sofa'
     }
 
-    # def __int__(self):
-    #     #http://www.gumtree.com.au/s-sofas/act/c20079l3008838?price-type=negotiable
-    #     for key, value in self.places.iteritems():
-    #         for price_type in self.price_types:
-    #             url = "http://"+self.allowed_domains[0]+"/"+self.category_name+"/"+key+"/"+self.category_name+"l"+self.category_code
-    #             +"?price_type="+price_type
-    #             print url
-    #             self.start_urls.extend(url)
-
     def parse(self, response):
         location_urls = response.xpath("//div[@class='refine-search-filter'][h3='Places']//a/@href")
         for location_url in location_urls.extract():
