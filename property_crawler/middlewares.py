@@ -29,3 +29,5 @@ class RotateUserAgentMiddleware(object):
             return
 
         request.headers['user-agent'] = choice(self.user_agents)
+        print "--------------------------" * 5
+        print request.headers['user-agent']

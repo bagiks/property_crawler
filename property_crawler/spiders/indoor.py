@@ -6,11 +6,11 @@ from scrapy.http import Request
 from scrapy.spiders import CrawlSpider
 
 from property_crawler.items import ImageItems
-from property_crawler.randomproxy import RandomProxy
 
 
 class IndoorImageCrawlSpider(CrawlSpider):
     name = "Indoor-Image-Spider"
+    rotate_user_agent = True
     allowed_domains = ["people.csail.mit.edu"]
     start_urls = [
         'http://people.csail.mit.edu/brussell/research/LabelMe/Images/'
@@ -20,15 +20,12 @@ class IndoorImageCrawlSpider(CrawlSpider):
         'IMAGES_STORE':'./images'
     }
 
-    randomProxy = RandomProxy(settings)
-
     def parse(self, response):
         image_directory_urls = response.xpath("//a/@href")
         for url in image_directory_urls.extract():
             if "indoor" in str(url).lower():
                 request = Request(urlparse.urljoin(self.start_urls[0],url), callback=self.parse_image_page)
                 request.meta['directory'] = url
-                self.randomProxy.process_request(request,self)
                 yield request
 
 
@@ -45,10 +42,10 @@ class IndoorImageCrawlSpider(CrawlSpider):
                 items.append(item)
         return items
 
-process = CrawlerProcess({
-    'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
-})
-
-process.crawl(IndoorImageCrawlSpider)
-
-process.start()
+# process = CrawlerProcess({
+#     'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+# })
+#
+# process.crawl(IndoorImageCrawlSpider)
+#
+# process.start()
