@@ -113,6 +113,7 @@ MONGODB_URI = 'mongodb://localhost:27017'
 #USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 DOWNLOADER_MIDDLEWARES = {
     'property_crawler.middlewares.RotateUserAgentMiddleware': 110,
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None
 }
 
 USER_AGENT_CHOICES = [

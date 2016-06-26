@@ -12,6 +12,7 @@ class RotateUserAgentMiddleware(object):
     @classmethod
     def from_crawler(cls, crawler):
         user_agents = crawler.settings.get('USER_AGENT_CHOICES', [])
+        print user_agents
 
         if not user_agents:
             raise NotConfigured("USER_AGENT_CHOICES not set or empty")
@@ -29,3 +30,5 @@ class RotateUserAgentMiddleware(object):
             return
 
         request.headers['user-agent'] = choice(self.user_agents)
+        print "-------------------" * 5
+        print request.headers['user-agent']
