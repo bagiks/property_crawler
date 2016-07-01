@@ -64,6 +64,8 @@ class RandomProxy(object):
             request.headers['Proxy-Authorization'] = basic_auth
 
     def process_exception(self, request, exception, spider):
+        print "------------" * 5
+        print exception
         proxy = request.meta['proxy']
         log.msg('Removing failed proxy <%s>, %d proxies left' % (
                     proxy, len(self.proxies)))

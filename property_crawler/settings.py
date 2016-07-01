@@ -73,7 +73,7 @@ MONGODB_URI = 'mongodb://localhost:27017'
 #ITEM_PIPELINES = {'property_crawler.pipelines.MongoImagePipeline': 1}
 # IMAGES_STORE ='./images/gumtree.au'
 # Retry many times since proxies often fail
-RETRY_TIMES = 1
+RETRY_TIMES = 5
 # Retry on most error codes since proxies fail for different reasons
 RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
 
