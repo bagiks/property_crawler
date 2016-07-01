@@ -1,6 +1,7 @@
 from random import choice
 from scrapy import signals
-from scrapy.exceptions import NotConfigured
+from scrapy.exceptions import NotConfigured, IgnoreRequest
+import logging
 
 
 class RotateUserAgentMiddleware(object):
@@ -29,5 +30,18 @@ class RotateUserAgentMiddleware(object):
             return
 
         request.headers['user-agent'] = choice(self.user_agents)
-        print "--------------------------" * 5
-        print request.headers['user-agent']
+        # print "--------------------------" * 5
+        # print request.headers['user-agent']
+
+
+
+class IgnoreDuplicatesMiddleware(object):
+    def __init__(self):
+        pass
+
+    def process_response(self, request, response, spider):
+        logging.warn("In Middleware " + response.url)
+        if response.url == "http://www.achurchnearyou.com//":
+            raise IgnoreRequest()
+        else:
+            return response
