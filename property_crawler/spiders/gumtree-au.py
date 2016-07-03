@@ -38,10 +38,10 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
             'property_crawler.pipelines.MongoDBPipeline':102,
             'scrapy.pipelines.images.ImagesPipeline': 101
         },
-        'IMAGES_STORE':'./images/'
-        # 'AWS_ACCESS_KEY_ID' : "AKIAJXDXDITI43SRODTQ",
-        # 'AWS_SECRET_ACCESS_KEY' : "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",
-        # 'IMAGES_STORE' : "s3://3giks-property/gumtree-au/"
+        # 'IMAGES_STORE':'./images/'
+        'AWS_ACCESS_KEY_ID' : "AKIAJXDXDITI43SRODTQ",
+        'AWS_SECRET_ACCESS_KEY' : "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",
+        'IMAGES_STORE' : "s3://3giks-property/gumtree-au/"
     }
 
     def parse(self, response):
