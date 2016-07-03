@@ -93,10 +93,13 @@ DOWNLOADER_MIDDLEWARES = {
 # http://username:password@host2:port
 # http://host3:port
 PROXY_LIST = 'list.txt'
-#ITEM_PIPELINES = {'property_crawler.pipelines.MongoDBPipeline':100}
-
-# ITEM_PIPELINES ={'scrapy.pipelines.images.ImagesPipeline': 1}
-# IMAGES_STORE='/Users/kidio/git/bagiks/property_crawler/images'
+# ITEM_PIPELINES = {
+#     'property_crawler.pipelines.MongoDBPipeline':100,
+#     'scrapy.pipelines.images.ImagesPipeline': 1
+# }
+#
+# # ITEM_PIPELINES ={'scrapy.pipelines.images.ImagesPipeline': 1}
+# IMAGES_STORE='images/sofa'
 
 # ITEM_PIPELINES = [
 #   'scrapy_mongodb.MongoDBPipeline',

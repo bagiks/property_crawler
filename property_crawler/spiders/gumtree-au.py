@@ -35,7 +35,9 @@ class GumtreeBedImageCrawlSpider(CrawlSpider):
     }
 
     custom_settings = {
-        'ITEM_PIPELINES': {'property_crawler.pipelines.MongoImagePipeline': 1},
+        'ITEM_PIPELINES': {
+            'property_crawler.pipelines.MongoDBPipeline':100,
+            'scrapy.pipelines.images.ImagesPipeline': 101},
         'IMAGES_STORE':'./images/sofa'
     }
 
