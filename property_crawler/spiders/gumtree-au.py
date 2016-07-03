@@ -11,34 +11,34 @@ from scrapy.utils.python import to_bytes
 
 from property_crawler.items import PropertyImageItems
 
-class GumtreeBedImageCrawlSpider(CrawlSpider):
-    name = "Gumtree-Au-Image-Spider-Bed"
+class GumtreeAuImageCrawlSpider(CrawlSpider):
+    name = "Gumtree-Au-Image-Spider"
     rotate_user_agent = True
     allowed_domains = ["www.gumtree.com.au"]
     start_urls = [
         "http://www.gumtree.com.au/s-sofas/c20079"
     ]
-    category = "sofa"
-
-    category_name = "s-sofas"
-    category_code = "c20079"
     price_types = ["fixed", "negotiable", "free"]
-    places = {
-        "act": "3008838",
-        "nsw": "3008839",
-        "nt": "3008840",
-        "qld": "3008841",
-        "sa": "3008842",
-        "tas":"3008843",
-        "vic":"3008844",
-        "wa":"3008845"
-    }
+
+    # category = "sofa"
+    # category_code = "c20079"
+    # places = {
+    #     "act": "3008838",
+    #     "nsw": "3008839",
+    #     "nt": "3008840",
+    #     "qld": "3008841",
+    #     "sa": "3008842",
+    #     "tas":"3008843",
+    #     "vic":"3008844",
+    #     "wa":"3008845"
+    # }
 
     custom_settings = {
         'ITEM_PIPELINES': {
             'property_crawler.pipelines.MongoDBPipeline':100,
-            'scrapy.pipelines.images.ImagesPipeline': 101},
-        'IMAGES_STORE':'./images/sofa'
+            'scrapy.pipelines.images.ImagesPipeline': 101
+        },
+        'IMAGES_STORE':'./images/'
     }
 
     def parse(self, response):
@@ -70,7 +70,7 @@ class GumtreeBedImageCrawlSpider(CrawlSpider):
 
         image_urls = response.xpath("//div[@class='carousel-wrap ad-gallery-thumbs']//span/@data-src").extract()
         l.add_value('image_urls',map(lambda x: x.replace("$_74.","$_10."), image_urls))
-        l.add_value('category', self.category)
+        l.add_value('category', header[-2])
         l.add_value('source', self.allowed_domains[0])
         l.add_value('page_id',hashlib.sha1(to_bytes(response.url)).hexdigest())
 
@@ -83,6 +83,6 @@ class GumtreeBedImageCrawlSpider(CrawlSpider):
 #     'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 # })
 #
-# process.crawl(GumtreeBedImageCrawlSpider)
+# process.crawl(GumtreeAuImageCrawlSpider)
 #
 # process.start()
