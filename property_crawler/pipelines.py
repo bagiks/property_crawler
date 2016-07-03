@@ -40,7 +40,7 @@ class MongoImagePipeline(ImagesPipeline):
     def __init__(self, store_uri, download_func=None, settings=None):
         super(MongoImagePipeline, self).__init__(store_uri, settings=settings, download_func=download_func)
         # print store_uri
-        print settings['MONGODB_DB']
+        # print settings['MONGODB_DB']
         connection = pymongo.MongoClient(
             settings['MONGODB_SERVER'],
             settings['MONGODB_PORT']
