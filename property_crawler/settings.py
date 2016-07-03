@@ -78,13 +78,14 @@ RETRY_TIMES = 5
 RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
 
 DOWNLOADER_MIDDLEWARES = {
+    'property_crawler.middlewares.IgnoreDuplicatesMiddleware': 80,
 
-    'scrapy.contrib.downloadermiddleware.retry.RetryMiddleware': 90,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
     # Fix path to this module
     'property_crawler.rotateproxymiddlewares.RandomProxy': 100,
-    'property_crawler.middlewares.IgnoreDuplicatesMiddleware': 80,
-    'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 120,
-    'property_crawler.middlewares.RotateUserAgentMiddleware': 110,
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+    # change proxy
+    'property_crawler.middlewares.RotateUserAgentMiddleware': 120,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None
 }
 
