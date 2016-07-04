@@ -132,3 +132,13 @@ process.crawl(FlatsPropertyCrawlSpider)
 process.start()
 ```
 - Run 9flats.py 
+
+
+
+
+---------
+for S3
+```
+pip install pillow
+pip intall boto
+```

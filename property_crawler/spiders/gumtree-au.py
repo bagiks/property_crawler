@@ -41,7 +41,7 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
         },
         'AWS_ACCESS_KEY_ID' : "AKIAJXDXDITI43SRODTQ",
         'AWS_SECRET_ACCESS_KEY' : "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",
-        'IMAGES_STORE' : "s3://3giks-property/gumtree-au/"
+        'IMAGES_STORE' : "s3://3giks-property/gumtree-au/test"
     }
 
     def parse(self, response):
