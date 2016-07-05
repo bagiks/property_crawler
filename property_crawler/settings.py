@@ -64,10 +64,17 @@ COOKIES_ENABLED = False
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
+
+# production
+# MONGODB_SERVER = "52.36.88.140"
+# MONGODB_COLLECTION = "property"
+
+# test
 MONGODB_SERVER = "localhost"
+MONGODB_COLLECTION = "property_test"
+
 MONGODB_PORT = 27017
 MONGODB_DB = "bagiks"
-MONGODB_COLLECTION = "property"
 MONGODB_URI = 'mongodb://localhost:27017'
 # ITEM_PIPELINES = {'property_crawler.pipelines.MongoDBPipeline':100}
 #ITEM_PIPELINES = {'property_crawler.pipelines.MongoImagePipeline': 1}
@@ -100,6 +107,9 @@ PROXY_LIST = 'list.txt'
 # }
 #
 # # ITEM_PIPELINES ={'scrapy.pipelines.images.ImagesPipeline': 1}
+
+AWS_ACCESS_KEY_ID = "AKIAJXDXDITI43SRODTQ"
+AWS_SECRET_ACCESS_KEY = "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"
 # IMAGES_STORE='images/sofa'
 
 # ITEM_PIPELINES = [

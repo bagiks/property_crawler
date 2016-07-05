@@ -16,8 +16,8 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
     rotate_user_agent = True
     allowed_domains = ["www.gumtree.com.au"]
     start_urls = [
-        # "http://www.gumtree.com.au/s-sofas/c20079"
-        'http://www.gumtree.com.au/s-microwaves/c21003'
+        "http://www.gumtree.com.au/s-sofas/c20079"
+        # 'http://www.gumtree.com.au/s-microwaves/c21003'
     ]
     price_types = ["fixed", "negotiable", "free"]
 
@@ -39,9 +39,16 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
             'property_crawler.pipelines.MongoDBPipeline':102,
             'scrapy.pipelines.images.ImagesPipeline': 101
         },
-        'AWS_ACCESS_KEY_ID' : "AKIAJXDXDITI43SRODTQ",
-        'AWS_SECRET_ACCESS_KEY' : "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",
-        'IMAGES_STORE' : "s3://3giks-property/gumtree-au/test"
+
+        # # S3 production
+        # 'IMAGES_STORE' : "s3://3giks-property/gumtree-au/",
+        #
+        # # S3 test
+        # 'IMAGES_STORE': "s3://3giks-property/gumtree-au/test/",
+
+        # test
+        "IMAGES_STORE" :'images/'
+
     }
 
     def parse(self, response):
