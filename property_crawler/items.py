@@ -38,4 +38,5 @@ class PropertyImageItems(Item):
     category = Field()
     source = Field()
     page_id = Field()
+    page_url = Field()
 

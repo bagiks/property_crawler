@@ -83,6 +83,7 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
         l.add_value('category', header[-2])
         l.add_value('source', self.allowed_domains[0])
         l.add_value('page_id',hashlib.sha1(to_bytes(response.url)).hexdigest())
+        l.add_value('page_url', response.url)
 
         return l.load_item()
 
