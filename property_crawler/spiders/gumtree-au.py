@@ -107,7 +107,7 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
 
         image_urls = response.xpath("//div[@class='gallery-thumbs']//span/@data-responsive-image").extract()
 
-        l.add_value('image_urls', map(self.extract_img_url, image_urls))
+        l.add_value('image_urls', map(self.extract_img_url, image_urls[-2:]))
         l.add_value('category', header[-2])
         l.add_value('source', self.allowed_domains[0])
         l.add_value('page_id',hashlib.sha1(to_bytes(response.url)).hexdigest())
