@@ -16,13 +16,65 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
     rotate_user_agent = True
     allowed_domains = ["www.gumtree.com.au"]
     start_urls = [
-        #'monitor'
+        # 'sofa'
+        'http://www.gumtree.com.au/s-sofas/c20079',
+        # 'bed'
+        'http://www.gumtree.com.au/s-beds/c20074',
+        # 'monitor'
         'http://www.gumtree.com.au/s-monitors/c21111',
-        #'washing machine'
-        'http://www.gumtree.com.au/s-washing-machines-dryers/c20066',
-        #'microwave'
-        'http://www.gumtree.com.au/s-microwaves/c21003'
-        
+        # 'washing machine'
+        'http://www.gumtree.com.au/s-washing-machines-dryers/washing+machine/k0c20066',
+        # 'microwave'
+        'http://www.gumtree.com.au/s-microwaves/c21003',
+        # 'printer',
+        'http://www.gumtree.com.au/s-printers-scanners/c18555',
+        # 'speaker',
+        'http://www.gumtree.com.au/s-speakers/c21102',
+        # 'table',
+        'http://www.gumtree.com.au/s-dining-tables/table/k0c20080',
+        # 'bicycle',
+        'http://www.gumtree.com.au/s-bicycles/bike/k0c18560',
+
+        # 'dishwasher',
+        'http://www.gumtree.com.au/s-dishwashers/c20060',
+
+        # 'computer',
+        'http://www.gumtree.com.au/s-desktops/c18551',
+
+        # laptop,
+        'http://www.gumtree.com.au/s-laptops/c18553',
+
+        # 'drawer',
+        'http://www.gumtree.com.au/s-dressers-drawers/c21015',
+
+        # 'suitcase',
+        'http://www.gumtree.com.au/s-suitcase+wheels/k0',
+        # 'refrigerator',
+        'http://www.gumtree.com.au/s-fridges-freezers/k0c20061',
+        # 'chair',
+        'http://www.gumtree.com.au/s-armchairs/c21005',
+        # 'mirror',
+        'http://www.gumtree.com.au/s-mirrors/c20077',
+        # 'sideboard',
+        'http://www.gumtree.com.au/s-buffets-side-tables/side+board/k0c21011',
+        # 'vacuum',
+        'http://www.gumtree.com.au/s-vacuum-cleaners/c20065',
+        # 'heater',
+        'http://www.gumtree.com.au/s-air-conditioning-heating/heater/k0c20062',
+        # 'desk',
+        'http://www.gumtree.com.au/s-desks/desk/k0c20076',
+        # 'tv',
+        'http://www.gumtree.com.au/s-entertainment-tv-units/television/k0c21012',
+        # 'wardrobe',
+        'http://www.gumtree.com.au/s-wardrobes/c20081',
+        # 'lamp',
+        'http://www.gumtree.com.au/s-table-desk-lamps/lamp/k0c21026',
+        # 'bookshelf',
+        'http://www.gumtree.com.au/s-bookcases-shelves/bookshelf/k0c21013',
+        # piano',
+        'http://www.gumtree.com.au/s-keyboards-pianos/piano/k0c18609',
+        # 'cooker',
+        'http://www.gumtree.com.au/s-rice+cooker/k0'
     ]
     price_types = ["fixed", "negotiable", "free"]
 
