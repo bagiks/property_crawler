@@ -104,8 +104,9 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
         l.add_value('item_id', header[-1].split(u'\xa0')[-1])
         l.add_value('tags',header[1:-1])
 
-        image_urls = response.xpath("//div[@class='carousel-wrap ad-gallery-thumbs']//span/@data-src").extract()
-        l.add_value('image_urls',map(lambda x: x.replace("$_74.","$_10."), image_urls))
+        image_urls = response.xpath("//div[@class='gallery-thumbs']//span/@data-responsive-image").extract()
+
+        l.add_value('image_urls', map(self.extract_img_url, image_urls))
         l.add_value('category', header[-2])
         l.add_value('source', self.allowed_domains[0])
         l.add_value('page_id',hashlib.sha1(to_bytes(response.url)).hexdigest())
@@ -114,8 +115,13 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
 
         return l.load_item()
 
-    def replaceNonBreakingSpace(self,x):
+    def replaceNonBreakingSpace(self, x):
         return x.replace(u'\xa0'," ")
+
+    def extract_img_url(self, x):
+        m = re.search('(?<=large):\'(.*)\'}(.*)', x)
+        return m.group(1)
+
 
 # process = CrawlerProcess({
 #     'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
@@ -124,3 +130,5 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
 # process.crawl(GumtreeAuImageCrawlSpider)
 #
 # process.start()
+
+
