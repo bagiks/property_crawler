@@ -62,7 +62,8 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
     custom_settings = {
         'ITEM_PIPELINES': {
             'property_crawler.pipelines.MongoDBPipeline':102,
-            'scrapy.pipelines.images.ImagesPipeline': 101
+            'scrapy.pipelines.images.ImagesPipeline': 101,
+            'property_crawler.pipelines.DynamicPathImgPipeline': 103,
         },
 
         # # S3 production
