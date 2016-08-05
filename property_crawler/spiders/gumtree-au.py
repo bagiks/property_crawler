@@ -81,12 +81,12 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
         for location_url in location_urls.extract():
             for price_type in self.price_types:
                 full_url = location_url+"?price-type="+price_type
-                yield Request(urlparse.urljoin('http://www.gumtree.com.au',full_url), callback=self.parse_page_list)
+                yield Request(urlparse.urljoin('http://www.gumtree.com.au', full_url), callback=self.parse_page_list)
 
     def parse_page_list(self, response):
         next_pages = response.xpath("//a[@class='rs-paginator-btn next']//@href")
         for next_page in next_pages.extract():
-            yield Request(urlparse.urljoin('http://www.gumtree.com.au',next_page), callback=self.parse_page_list)
+            yield Request(urlparse.urljoin('http://www.gumtree.com.au', next_page), callback=self.parse_page_list)
 
         item_urls = response.xpath("//div[@class='rs-ad-field rs-ad-detail']/div/a[@itemprop='url']/@href")
         for item_url in item_urls.extract():

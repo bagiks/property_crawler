@@ -28,7 +28,7 @@ ROBOTSTXT_OBEY = False
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 
-DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = 3
 
 # The download delay setting will honor only one of:
 CONCURRENT_REQUESTS_PER_DOMAIN = 16
@@ -110,8 +110,8 @@ PROXY_LIST = 'list.txt'
 #
 # # ITEM_PIPELINES ={'scrapy.pipelines.images.ImagesPipeline': 1}
 
-AWS_ACCESS_KEY_ID = "AKIAJXDXDITI43SRODTQ"
-AWS_SECRET_ACCESS_KEY = "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"
+# AWS_ACCESS_KEY_ID = "AKIAJXDXDITI43SRODTQ"
+# AWS_SECRET_ACCESS_KEY = "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"
 # IMAGES_STORE='images/sofa'
 
 # ITEM_PIPELINES = [
