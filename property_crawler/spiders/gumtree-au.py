@@ -16,33 +16,13 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
     rotate_user_agent = True
     allowed_domains = ["www.gumtree.com.au"]
     start_urls = [
-        # "http://www.gumtree.com.au/s-sofas/c20079"
-	#	'http://www.gumtree.com.au/s-blenders-juicers-food-processors/c21002',
-	#'http://www.gumtree.com.au/s-coffee-machines/c21000',
-	#'http://www.gumtree.com.au/s-cooktops-rangehoods/c20059',
-	#'http://www.gumtree.com.au/s-dishwashers/c20060',
-	#'http://www.gumtree.com.au/s-ovens/c20063',
-	#'http://www.gumtree.com.au/s-vacuum-cleaners/c20065',
-	#'http://www.gumtree.com.au/s-washing-machines-dryers/c20066'
-	#'http://www.gumtree.com.au/s-air-conditioning-heating/c20062',
-	#'http://www.gumtree.com.au/s-sewing-machines/c21001',
-	#'http://www.gumtree.com.au/s-small-appliances/c20064',
-	#'http://www.gumtree.com.au/s-fridges-freezers/c20061'
-	#'http://www.gumtree.com.au/s-other-appliances/c18402'
-	
-
-	# extra
-	#	'http://www.gumtree.com.au/s-tv-dvd-players/c21127'	
-	#	'http://www.gumtree.com.au/s-lighting/c21027'
-	#'http://gumtree.com.au/s-laptops/c18553',
-	#'http://gumtree.com.au/s-computer-accessories/c18554',
-	#'http://gumtree.com.au/s-desktops/c18551',
-	#'http://gumtree.com.au/s-printers-scanners/c18555',
-	#'http://gumtree.com.au/s-modems-routers/c21110',
-	#'http://gumtree.com.au/s-monitors/c21111',
-	#	'http://gumtree.com.au/s-other-computers-software/c18558',
-	#'http://www.gumtree.com.au/s-computer-speakers/c18557'
-    	'http://www.gumtree.com.au/s-audio/c21106'
+        #'monitor'
+        'http://www.gumtree.com.au/s-monitors/c21111',
+        #'washing machine'
+        'http://www.gumtree.com.au/s-washing-machines-dryers/c20066',
+        #'microwave'
+        'http://www.gumtree.com.au/s-microwaves/c21003'
+        
     ]
     price_types = ["fixed", "negotiable", "free"]
 
