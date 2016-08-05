@@ -84,21 +84,22 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
                 yield Request(urlparse.urljoin('http://www.gumtree.com.au', full_url), callback=self.parse_page_list)
 
     def parse_page_list(self, response):
-        next_pages = response.xpath("//a[@class='rs-paginator-btn next']//@href")
+        next_pages = response.xpath("//a[@class='paginator__button paginator__button-next']//@href")
         for next_page in next_pages.extract():
+            print next_page
             yield Request(urlparse.urljoin('http://www.gumtree.com.au', next_page), callback=self.parse_page_list)
 
-        item_urls = response.xpath("//div[@class='rs-ad-field rs-ad-detail']/div/a[@itemprop='url']/@href")
+        item_urls = response.xpath("//div[@itemprop='offers']/div/a[@itemprop='url']/@href")
         for item_url in item_urls.extract():
             # print item_url
-            yield Request(urlparse.urljoin('http://www.gumtree.com.au',item_url), callback=self.parse_item)
+            yield Request(urlparse.urljoin('http://www.gumtree.com.au', item_url), callback=self.parse_item)
 
     def parse_item(self, response):
         l = ItemLoader(item=PropertyImageItems(), response=response)
 
         l.add_xpath('title', "//h1[@id='ad-title']/text()", MapCompose(unicode.strip))
         l.add_xpath('price',"//div[@id='ad-price']//span[@class='j-original-price']/text()", MapCompose(unicode.strip))
-        l.add_xpath('description',"//div[@id='ad-description']/text()", Join('\n'))
+        l.add_xpath('description',"//div[@class='ad-details__ad-description-details']/text()", Join('\n'))
         header = response.xpath("//div[@id='breadcrumb']//li//text()").extract()
         l.add_value('item_id', header[-1].split(u'\xa0')[-1])
         l.add_value('tags',header[1:-1])
