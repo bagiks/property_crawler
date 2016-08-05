@@ -39,3 +39,4 @@ class PropertyImageItems(Item):
     source = Field()
     page_id = Field()
     page_url = Field()
+

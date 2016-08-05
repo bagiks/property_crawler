@@ -68,9 +68,24 @@ Vagrant.configure(2) do |config|
 	config.vm.provision "shell", inline: <<-SHELL
 		sudo apt-get update -y
 		sudo apt-get install curl -y	
-    sudo apt-get install libxslt1-dev libxslt1.1 libxml2-dev libxml2 libssl-dev
+        sudo apt-get install libxslt1-dev libxslt1.1 libxml2-dev libxml2 libssl-dev -y
+        sudo apt-get install -y libffi-dev python-dev python-pip libxml2-dev libxslt-dev
+
+        cd /vagrant_data
+
+        sudo apt-get install libjpeg-dev
+        sudo apt-get build-dep python-imaging
+        sudo apt-get install libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev
+        sudo pip install -r requirements.txt
+
 	SHELL
 
+
+        #sudo apt-get install  -y libjpeg zlib libtiff libfreetype littlecms libwebp openjpeg tcl/tk
+
+# sudo apt-get update
+# sudo apt-get install -y libffi-dev python-dev python-pip libxml2-dev libxslt-dev 
+# sudo pip install Scrapy
 
 	# config.vm.provision "shell", inline: <<-SHELL
 	# 	anaconda=Anaconda2-4.0.0-Linux-x86_64.sh

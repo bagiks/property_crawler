@@ -57,10 +57,9 @@ class IgnoreDuplicatesMiddleware(object):
 
     def process_request(self, request, spider):
         # logging.warn("In Middleware " + request.url)
-        if len(self.pageIdSet) > 0 :
-            urlHash = hashlib.sha1(str(request.url).encode()).hexdigest()
-            if urlHash in self.pageIdSet:
-                logging.warn("Duplicated: Ignore " + request.url)
-                raise IgnoreRequest()
-            else:
-                self.pageIdSet.add(urlHash)
+        urlHash = hashlib.sha1(str(request.url).encode()).hexdigest()
+        if urlHash in self.pageIdSet:
+            logging.warn("Duplicated: Ignore " + request.url)
+            raise IgnoreRequest()
+        else:
+            self.pageIdSet.add(urlHash)
