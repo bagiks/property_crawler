@@ -86,7 +86,6 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
     def parse_page_list(self, response):
         next_pages = response.xpath("//a[@class='paginator__button paginator__button-next']//@href")
         for next_page in next_pages.extract():
-            print next_page
             yield Request(urlparse.urljoin('http://www.gumtree.com.au', next_page), callback=self.parse_page_list)
 
         item_urls = response.xpath("//div[@itemprop='offers']/div/a[@itemprop='url']/@href")
