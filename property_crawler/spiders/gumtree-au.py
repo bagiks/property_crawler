@@ -84,27 +84,28 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
                 yield Request(urlparse.urljoin('http://www.gumtree.com.au', full_url), callback=self.parse_page_list)
 
     def parse_page_list(self, response):
-        next_pages = response.xpath("//a[@class='rs-paginator-btn next']//@href")
+        next_pages = response.xpath("//a[@class='paginator__button paginator__button-next']//@href")
         for next_page in next_pages.extract():
             yield Request(urlparse.urljoin('http://www.gumtree.com.au', next_page), callback=self.parse_page_list)
 
-        item_urls = response.xpath("//div[@class='rs-ad-field rs-ad-detail']/div/a[@itemprop='url']/@href")
+        item_urls = response.xpath("//div[@itemprop='offers']/div/a[@itemprop='url']/@href")
         for item_url in item_urls.extract():
             # print item_url
-            yield Request(urlparse.urljoin('http://www.gumtree.com.au',item_url), callback=self.parse_item)
+            yield Request(urlparse.urljoin('http://www.gumtree.com.au', item_url), callback=self.parse_item)
 
     def parse_item(self, response):
         l = ItemLoader(item=PropertyImageItems(), response=response)
 
         l.add_xpath('title', "//h1[@id='ad-title']/text()", MapCompose(unicode.strip))
         l.add_xpath('price',"//div[@id='ad-price']//span[@class='j-original-price']/text()", MapCompose(unicode.strip))
-        l.add_xpath('description',"//div[@id='ad-description']/text()", Join('\n'))
+        l.add_xpath('description',"//div[@class='ad-details__ad-description-details']/text()", Join('\n'))
         header = response.xpath("//div[@id='breadcrumb']//li//text()").extract()
         l.add_value('item_id', header[-1].split(u'\xa0')[-1])
         l.add_value('tags',header[1:-1])
 
-        image_urls = response.xpath("//div[@class='carousel-wrap ad-gallery-thumbs']//span/@data-src").extract()
-        l.add_value('image_urls',map(lambda x: x.replace("$_74.","$_10."), image_urls))
+        image_urls = response.xpath("//div[@class='gallery-thumbs']//span/@data-responsive-image").extract()
+
+        l.add_value('image_urls', map(self.extract_img_url, image_urls))
         l.add_value('category', header[-2])
         l.add_value('source', self.allowed_domains[0])
         l.add_value('page_id',hashlib.sha1(to_bytes(response.url)).hexdigest())
@@ -113,8 +114,15 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
 
         return l.load_item()
 
-    def replaceNonBreakingSpace(self,x):
+    def replaceNonBreakingSpace(self, x):
         return x.replace(u'\xa0'," ")
+
+    def extract_img_url(self, x):
+        try:
+            m = re.search('(?<=large):\'(.*)\'}(.*)', x)
+            return m.group(1)
+        except AttributeError, TypeError:
+            print("Cannot extract from " + x)
 
 # process = CrawlerProcess({
 #     'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
@@ -123,3 +131,5 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
 # process.crawl(GumtreeAuImageCrawlSpider)
 #
 # process.start()
+
+
