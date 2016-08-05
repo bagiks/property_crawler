@@ -16,7 +16,6 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
     rotate_user_agent = True
     allowed_domains = ["www.gumtree.com.au"]
     start_urls = [
-<<<<<<< HEAD
         # "http://www.gumtree.com.au/s-sofas/c20079"
 	#	'http://www.gumtree.com.au/s-blenders-juicers-food-processors/c21002',
 	#'http://www.gumtree.com.au/s-coffee-machines/c21000',
@@ -44,10 +43,6 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
 	#	'http://gumtree.com.au/s-other-computers-software/c18558',
 	#'http://www.gumtree.com.au/s-computer-speakers/c18557'
     	'http://www.gumtree.com.au/s-audio/c21106'
-=======
-        "http://www.gumtree.com.au/s-sofas/c20079"
-        # 'http://www.gumtree.com.au/s-microwaves/c21003'
->>>>>>> 8eb87f2ccad7ae7da91e4315159613936a3cbef5
     ]
     price_types = ["fixed", "negotiable", "free"]
 
@@ -113,12 +108,9 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
         l.add_value('category', header[-2])
         l.add_value('source', self.allowed_domains[0])
         l.add_value('page_id',hashlib.sha1(to_bytes(response.url)).hexdigest())
-<<<<<<< HEAD
-	l.add_value('page_url', response.url)
-=======
+
         l.add_value('page_url', response.url)
 
->>>>>>> 8eb87f2ccad7ae7da91e4315159613936a3cbef5
         return l.load_item()
 
     def replaceNonBreakingSpace(self,x):
