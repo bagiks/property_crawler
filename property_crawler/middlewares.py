@@ -38,28 +38,28 @@ class RotateUserAgentMiddleware(object):
 
 
 
-class IgnoreDuplicatesMiddleware(object):
-    def __init__(self):
-        connection = pymongo.MongoClient(
-            settings['MONGODB_SERVER'],
-            settings['MONGODB_PORT']
-        )
-        db = connection[settings['MONGODB_DB']]
-        self.collection = db[settings['MONGODB_COLLECTION']]
-
-        self.pageIdSet = set()
-        for page in self.collection.find({}, {"page_id": 1, "_id": 0}):
-            self.pageIdSet.add(page['page_id'][0])
-
-    # @classmethod
-    # def from_crawler(cls, crawler):
-    #     return cls(crawler.settings)
-
-    def process_request(self, request, spider):
-        # logging.warn("In Middleware " + request.url)
-        urlHash = hashlib.sha1(str(request.url).encode()).hexdigest()
-        if urlHash in self.pageIdSet:
-            logging.warn("Duplicated: Ignore " + request.url)
-            raise IgnoreRequest()
-        else:
-            self.pageIdSet.add(urlHash)
+# class IgnoreDuplicatesMiddleware(object):
+#     def __init__(self):
+#         connection = pymongo.MongoClient(
+#             settings['MONGODB_SERVER'],
+#             settings['MONGODB_PORT']
+#         )
+#         db = connection[settings['MONGODB_DB']]
+#         self.collection = db[settings['MONGODB_COLLECTION']]
+#
+#         self.pageIdSet = set()
+#         for page in self.collection.find({}, {"page_id": 1, "_id": 0}):
+#             self.pageIdSet.add(page['page_id'][0])
+#
+#     # @classmethod
+#     # def from_crawler(cls, crawler):
+#     #     return cls(crawler.settings)
+#
+#     def process_request(self, request, spider):
+#         # logging.warn("In Middleware " + request.url)
+#         urlHash = hashlib.sha1(str(request.url).encode()).hexdigest()
+#         if urlHash in self.pageIdSet:
+#             logging.warn("Duplicated: Ignore " + request.url)
+#             raise IgnoreRequest()
+#         else:
+#             self.pageIdSet.add(urlHash)

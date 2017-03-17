@@ -28,10 +28,10 @@ ROBOTSTXT_OBEY = False
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 
-# DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 1
 
 # The download delay setting will honor only one of:
-CONCURRENT_REQUESTS_PER_DOMAIN = 16
+# CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
@@ -73,7 +73,7 @@ COOKIES_ENABLED = False
 
 # test
 MONGODB_SERVER = "localhost"
-MONGODB_COLLECTION = "property_test"
+MONGODB_COLLECTION = "cracked_phone"
 
 MONGODB_PORT = 27017
 MONGODB_DB = "bagiks"
@@ -87,12 +87,12 @@ RETRY_TIMES = 5
 RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
 
 DOWNLOADER_MIDDLEWARES = {
-    'property_crawler.middlewares.IgnoreDuplicatesMiddleware': 80,
+    # 'property_crawler.middlewares.IgnoreDuplicatesMiddleware': 80,
 
     'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
     # Fix path to this module
     #'property_crawler.rotateproxymiddlewares.RandomProxy': 100,
-    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+    # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
     # change proxy
     'property_crawler.middlewares.RotateUserAgentMiddleware': 120,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None
