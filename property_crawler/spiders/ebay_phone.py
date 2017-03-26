@@ -17,7 +17,7 @@ class EbayImageCrawlSpider(CrawlSpider):
     rotate_user_agent = True
     allowed_domains = ["www.ebay.com"]
     start_urls = [
-        'http://www.ebay.com/sch/i.html?_from=R40&_sacat=0&_nkw=cracked+phone&_ipg=200&rt=nc'
+        'http://www.ebay.com/sch/i.html?_from=R40&_sacat=0&LH_ItemCondition=3000&_nkw=smartphone&_pgn=1&_skc=450&rt=nc'
     ]
 
     custom_settings = {
