@@ -11,7 +11,7 @@ num_fetch_threads = 8
 enclosure_queue = Queue()
 
 PATH = "/Volumes/Data/WORKSPACE/git/bagiks/property_crawler/property_crawler/spiders/images/full_samsung"
-    CLEAN_PATH = "/Volumes/Data/WORKSPACE/git/bagiks/property_crawler/property_crawler/spiders/images/full_samsung_clean"
+CLEAN_PATH = "/Volumes/Data/WORKSPACE/git/bagiks/property_crawler/property_crawler/spiders/images/full_samsung_clean"
 DIRTY_PATH = "/Volumes/Data/WORKSPACE/git/bagiks/property_crawler/property_crawler/spiders/images/full_samsung_dirty"
 endpoint = 'https://rekognition.us-west-2.amazonaws.com'
 collection = 'MaxLabels'
