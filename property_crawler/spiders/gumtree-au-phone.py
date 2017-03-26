@@ -43,7 +43,7 @@ class GumtreeAuImageCrawlSpider(CrawlSpider):
         # 'http://gumtree.com.au/s-monitors/c21111',
         #	'http://gumtree.com.au/s-other-computers-software/c18558',
         # 'http://www.gumtree.com.au/s-computer-speakers/c18557'
-        'https://www.gumtree.com.au/s-other-phones/c18600'
+        'https://www.gumtree.com.au/s-phones/crack/k0c18313'
     ]
     price_types = ["fixed", "negotiable", "free"]
 
