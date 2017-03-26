@@ -73,7 +73,7 @@ COOKIES_ENABLED = False
 
 # test
 MONGODB_SERVER = "localhost"
-MONGODB_COLLECTION = "property_test"
+MONGODB_COLLECTION = "phone"
 
 MONGODB_PORT = 27017
 MONGODB_DB = "bagiks"

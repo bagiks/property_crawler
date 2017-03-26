@@ -30,13 +30,4 @@ class AnnotationItems (Item):
 class PropertyImageItems(Item):
     image_urls = Field()
     images = Field()
-    title = Field()
-    price = Field()
-    description = Field()
-    item_id = Field()
-    tags = Field()
-    category = Field()
-    source = Field()
-    page_id = Field()
-    page_url = Field()
 
